@@ -25,7 +25,7 @@ namespace SchoolRegister
             {
 
                 case "1":
-                    Console.WriteLine("Please Enter Student Name:");
+                    Console.WriteLine("Please Enter Student Number:");
                     idno = Console.ReadLine();
                     Console.WriteLine("Please Enter Classroom Name:");
                     classroom = Console.ReadLine();
@@ -84,8 +84,8 @@ namespace SchoolRegister
                         string studentfile_way = files_[0].DirectoryName;
                         string studentfile_name = idno + ".txt";
                         string studenttarget_way = System.IO.Path.Combine(studentfile_way, studentfile_name);
-                        string[] student_ınfo = System.IO.File.ReadAllLines(studenttarget_way);
-                        foreach (string line_ in student_ınfo)
+                        string[] student_info = System.IO.File.ReadAllLines(studenttarget_way);
+                        foreach (string line_ in student_info)
                         {
                             Console.WriteLine(line_);
                         }
@@ -100,10 +100,40 @@ namespace SchoolRegister
                         if (update_menu == "1")
                         {
                             Console.WriteLine("Please Enter Telephone Number:");
-                            student_ınfo[4] = "Telephone:" + Console.ReadLine();
-                            System.IO.File.WriteAllLines(studenttarget_way, student_ınfo);
+                            student_info[4] = "Telephone:" + Console.ReadLine();
+                            System.IO.File.WriteAllLines(studenttarget_way, student_info);
                             Console.Write("Update Succesfull.");
-                            foreach (string line_ in student_ınfo)
+                            foreach (string line_ in student_info)
+                            {
+                                Console.WriteLine(line_);
+                            }
+                            Console.Write("Other Update Process: (yes or no) ");
+                            string update_keep = Console.ReadLine();
+                            if (update_keep == "yes")
+                            {
+                                goto UPDATES;
+                            }
+
+                            else if (update_keep == "no")
+                            {
+                                Console.Clear();
+                                goto OMERFDEV;
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.Write("Wrong Choose.");
+                            }
+                            
+                        }
+
+                        else if (update_menu == "2")
+                        {
+                            Console.WriteLine("Please Enter Adress:");
+                            student_info[5] = "Adress:" + Console.ReadLine();
+                            System.IO.File.WriteAllLines(studenttarget_way, student_info);
+                            Console.Write("Update Succesfull.");
+                            foreach (string line_ in student_info)
                             {
                                 Console.WriteLine(line_);
                             }
