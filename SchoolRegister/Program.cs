@@ -124,6 +124,7 @@ namespace SchoolRegister
                             {
                                 Console.Clear();
                                 Console.Write("Wrong Choose.");
+                                goto UPDATES;
                             }
                             
                         }
@@ -134,6 +135,7 @@ namespace SchoolRegister
                             student_info[5] = "Adress:" + Console.ReadLine();
                             System.IO.File.WriteAllLines(studenttarget_way, student_info);
                             Console.Write("Update Succesfull.");
+
                             foreach (string line_ in student_info)
                             {
                                 Console.WriteLine(line_);
@@ -153,15 +155,113 @@ namespace SchoolRegister
                             else
                             {
                                 Console.Clear();
-                                Console.Write("Wrong Choose.");
+                                Console.WriteLine("Wrong Choose.");
+                                goto UPDATES;
                             }
 
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Wrong Choose.");
+                            goto OMERFDEV;
                         }
                     }
 
                     break;
+                case "3":
+                    Console.WriteLine("Please Enter Student Number:");
+                    idno = Console.ReadLine();
+                    System.IO.DirectoryInfo delete_file = new System.IO.DirectoryInfo("c:\\SCHOOLBOOK");
+                    System.IO.FileInfo[] file_ = delete_file.GetFiles(idno + ".txt", System.IO.SearchOption.AllDirectories);
+                    int find_file = file_.Count();
+                    if (find_file>0)
+                    {
+                        String delete_file_way = file_[0].DirectoryName;
+                        string[] file_section = delete_file_way.Split('\\');
+                        DELETE_:
+                        Console.WriteLine("Do you want to delete {0} student in {1} class.", idno, file_section[2]);
+                        Console.WriteLine("yes or no");
+                        string delete_comfirm = Console.ReadLine();
+                        if (delete_comfirm=="yes")
+                        {
+                            System.IO.Directory.Delete(delete_file_way, true);
+                            Console.WriteLine("Deleted {0} student in {1} classroom.", idno, file_section[2]);
+                            goto OMERFDEV;
+                        }
+                        else if (delete_comfirm=="no")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Cancelled Delete.");
+                            goto OMERFDEV;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Wrong Choose");
+                            goto DELETE_;
+                        }
 
-            }
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("{0} Student Doesnt Exist Any Classroom.", idno);
+                        goto OMERFDEV;
+                    }
+                    
+                    Console.ReadKey();
+                    break;
+                case "4":
+                    Console.WriteLine("Please Enter Student:");
+                    idno = Console.ReadLine();
+                    System.IO.DirectoryInfo movefile_ = new System.IO.DirectoryInfo("c:\\SCHOOLBOOK");
+                    System.IO.FileInfo[] findfile_= movefile_.GetFiles(idno+".txt",SearchOption.AllDirectories);
+                    int file_s = findfile_.Count();
+                    if (file_s>0)
+                    {
+                        string move_file_way = findfile_[0].DirectoryName;
+                        string[] files = move_file_way.Split('\\');
+                        Console.WriteLine(" Which Class Should You Move From Classroom {0}.", files);
+                        string move_file_name = Console.ReadLine();
+                        if (System.IO.Directory.Exists("c:\\SCHOOLBOOK"+"\\"+move_file_name)==true)
+                        {
+                            string target_file_way = @"c:\SCHOOLBOOK" + "\\" + move_file_name + "\\" + idno;
+                            System.IO.Directory.Move(move_file_way,target_file_way);
+                            Console.Clear();
+                            Console.WriteLine("Student Number {0} in classroom {1} moved To Classroom {2}." ,idno,files,move_file_name);
+                            goto OMERFDEV;
+
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("{0} Classrom Doesnt Exist.", move_file_name);
+                            goto OMERFDEV;
+
+                        }
+
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("{0} Student Doesnt Exist.",idno);
+                        goto OMERFDEV;
+                    }
+                    break;
+               
+                case "5":
+                    Environment.Exit(0);
+                    break;
+
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Wrong Command.");
+                    goto OMERFDEV;
+                    break;
+            } 
+           
+          
         }
     }
 }
