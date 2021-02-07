@@ -16,14 +16,14 @@ namespace SchoolRegister
             Console.WriteLine("2-Update Student Info");
             Console.WriteLine("3-Delete Student Info");
             Console.WriteLine("4-Student For Change Classroom");
-            Console.WriteLine("5-Exit");
+            Console.WriteLine("5-Close");
             Console.Write("Choose number (1 2 3 4 5)");
             string choose = Console.ReadLine();
             string idno, classroom, class_way, student_way;
 
             switch (choose)
             {
-
+                
                 case "1":
                     Console.WriteLine("Please Enter Student Number:");
                     idno = Console.ReadLine();
@@ -89,7 +89,7 @@ namespace SchoolRegister
                         {
                             Console.WriteLine(line_);
                         }
-
+                    
 
 
                     UPDATES:
@@ -167,8 +167,14 @@ namespace SchoolRegister
                             goto OMERFDEV;
                         }
                     }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Wrong Choose.");
+                        goto OMERFDEV;
 
-                    break;
+                    }
+
                 case "3":
                     Console.WriteLine("Please Enter Student Number:");
                     idno = Console.ReadLine();
@@ -209,9 +215,8 @@ namespace SchoolRegister
                         Console.WriteLine("{0} Student Doesnt Exist Any Classroom.", idno);
                         goto OMERFDEV;
                     }
-                    
-                    Console.ReadKey();
-                    break;
+                                   
+                   
                 case "4":
                     Console.WriteLine("Please Enter Student:");
                     idno = Console.ReadLine();
@@ -222,14 +227,14 @@ namespace SchoolRegister
                     {
                         string move_file_way = findfile_[0].DirectoryName;
                         string[] files = move_file_way.Split('\\');
-                        Console.WriteLine(" Which Class Should You Move From Classroom {0}.", files);
+                        Console.WriteLine("Which Class Should You Move From {2} Classroom ", files);
                         string move_file_name = Console.ReadLine();
                         if (System.IO.Directory.Exists("c:\\SCHOOLBOOK"+"\\"+move_file_name)==true)
                         {
                             string target_file_way = @"c:\SCHOOLBOOK" + "\\" + move_file_name + "\\" + idno;
                             System.IO.Directory.Move(move_file_way,target_file_way);
                             Console.Clear();
-                            Console.WriteLine("Student Number {0} in classroom {1} moved To Classroom {2}." ,idno,files,move_file_name);
+                            Console.WriteLine("Student Number {0} Move To classroom {1} ." ,idno,move_file_name);
                             goto OMERFDEV;
 
                         }
@@ -248,8 +253,8 @@ namespace SchoolRegister
                         Console.WriteLine("{0} Student Doesnt Exist.",idno);
                         goto OMERFDEV;
                     }
-                    break;
-               
+
+                   
                 case "5":
                     Environment.Exit(0);
                     break;
@@ -258,7 +263,7 @@ namespace SchoolRegister
                     Console.Clear();
                     Console.WriteLine("Wrong Command.");
                     goto OMERFDEV;
-                    break;
+                    
             } 
            
           
