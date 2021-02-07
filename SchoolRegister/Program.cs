@@ -72,7 +72,7 @@ namespace SchoolRegister
                     }
                     break;
 
-                //test
+                
                 case "2":
                     Console.WriteLine("Please Enter Student number:");
                     idno = Console.ReadLine();
@@ -89,12 +89,13 @@ namespace SchoolRegister
                         {
                             Console.WriteLine(line_);
                         }
-                        Console.ReadKey();
+
 
 
                     UPDATES:
-                        Console.WriteLine("1-Telephone:");
-                        Console.WriteLine("2-Adress:");
+                        Console.Clear();
+                        Console.WriteLine("1-Telephone");
+                        Console.WriteLine("2-Adress");
                         Console.WriteLine("Update information 1 or 2");
                         string update_menu = Console.ReadLine();
                         if (update_menu == "1")
