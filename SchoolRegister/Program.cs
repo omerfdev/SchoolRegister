@@ -11,7 +11,18 @@ namespace SchoolRegister
     {
         static void Main(string[] args)
         {
+            
+
         OMERFDEV:
+            string schoolbook = @"c:\SCHOOLBOOK";
+            System.IO.Directory.CreateDirectory(schoolbook);
+            string class_room = @"c:\SCHOOLBOOK\10-A\\";
+            System.IO.Directory.CreateDirectory(class_room);
+            string classroom_ = @"c:\SCHOOLBOOK\10-B\\";
+            System.IO.Directory.CreateDirectory(classroom_);
+            string classroom_1 = @"c:\SCHOOLBOOK\10-C\\";
+            System.IO.Directory.CreateDirectory(classroom_1);
+           
             Console.WriteLine("1-Add New Student");
             Console.WriteLine("2-Update Student Info");
             Console.WriteLine("3-Delete Student Info");
@@ -215,8 +226,8 @@ namespace SchoolRegister
                         Console.WriteLine("{0} Student Doesnt Exist Any Classroom.", idno);
                         goto OMERFDEV;
                     }
-                                   
-                   
+                        
+                  
                 case "4":
                     Console.WriteLine("Please Enter Student:");
                     idno = Console.ReadLine();
