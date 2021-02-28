@@ -11,9 +11,9 @@ namespace SchoolRegister
     {
         static void Main(string[] args)
         {
-            
 
-        OMERFDEV:
+            Console.WriteLine("{0:r}", DateTime.Now);
+            OMERFDEV:
             string schoolbook = @"c:\SCHOOLBOOK";
             System.IO.Directory.CreateDirectory(schoolbook);
             string class_room = @"c:\SCHOOLBOOK\10-A\\";
